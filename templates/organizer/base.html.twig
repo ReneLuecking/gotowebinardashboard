@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block submenu %}
+    <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">Aktionen</h6>
+
+    <ul class="nav flex-column mb-2 fa-ul">
+        <li class="nav-item">
+            <a class="nav-link{% if current == path('organizer_add') %} active{% endif %}" href="{{ path('organizer_add') }}">
+                <span class="fa-li"><i class="far fa-plus-square"></i></span>Hinzufügen
+            </a>
+        </li>
+    </ul>
+{% endblock %}

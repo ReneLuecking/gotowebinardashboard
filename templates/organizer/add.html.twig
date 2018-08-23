@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organisator hinzufügen{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.consumerkey) }}
+    {{ form_row(form.consumersecret) }}
+    {% if not responseKeyUrl is empty %}
+        <div class="form-group">
+            <a href="{{ responseKeyUrl }}" class="btn btn-secondary" target="_blank">Hier klicken, um den Response Key zu erhalten.</a>
+        </div>
+    {% endif %}
+    {% if form.responsekey is defined %}
+        {{ form_row(form.responsekey) }}
+    {% endif %}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+{% endblock %}

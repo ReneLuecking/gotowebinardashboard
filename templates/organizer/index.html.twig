@@ -1,0 +1,47 @@
+{% extends 'organizer/base.html.twig' %}
+
+{% block title %}Organisatoren{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-4"><strong>Name</strong></div>
+        <div class="col-4"><strong>E-Mail</strong></div>
+        <div class="col-4"><strong>Aktionen</strong></div>
+    </div>
+    {% for organizer in organizers %}
+        <div class="row organizer" data-organizerkey="{{ organizer.organizerkey }}">
+            <div class="col-4"><span>{{ organizer.firstname }}</span></div>
+            <div class="col-4"><span>{{ organizer.lastname }}</span></div>
+            <div class="col-4">
+                <button class="btn btn-link detail">Details</button>
+                <button class="btn btn-link remove">Löschen</button>
+            </div>
+        </div>
+        <div class="row d-none organizer-{{ organizer.organizerkey }}-detail">
+            <div class="col-12">
+                <ul class="list-unstyled">
+                    <li><strong>Organizerkey:</strong> {{ organizer.organizerkey }}</li>
+                    <li><strong>Accountkey:</strong> {{ organizer.accountkey }}</li>
+                    <li><strong>Consumerkey:</strong> {{ organizer.consumerkey }}</li>
+                    <li><strong>Consumersecret:</strong> {{ organizer.consumersecret }}</li>
+                    <li><strong>Accesstoken:</strong> {{ organizer.accesstoken }}</li>
+                    <li><strong>Läuft ab am:</strong> {{ organizer.expiresin|date('d. F Y, H:i') }} Uhr</li>
+                    <li><strong>Refreshtoken:</strong> {{ organizer.refreshtoken }}</li>
+                    <li><strong>Läuft ab am:</strong> {{ 1521936000|date('d. F Y, H:i') }} Uhr</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.organizer .detail').click(function () {
+                const key = jQuery(this).closest('.organizer').data('organizerkey');
+
+                jQuery('.organizer-' + key + '-detail').toggleClass('d-none');
+            });
+        });
+    </script>
+{% endblock %}

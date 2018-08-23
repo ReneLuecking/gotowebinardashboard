@@ -1,0 +1,23 @@
+{% set current = app.request.pathinfo %}
+
+<div class="sidebar-sticky">
+    <ul class="nav flex-column fa-ul">
+        <li class="nav-item">
+            <a class="nav-link{% if current == path('home') %} active{% endif %}" href="{{ path('home') }}">
+                <span class="fa-li"><i class="far fa-file-alt"></i></span>Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link{% if current == path('organizer_index') %} active{% endif %}" href="{{ path('organizer_index') }}">
+                <span class="fa-li"><i class="fas fa-users"></i></span>Organisatoren
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link{% if current == path('webinar_index') %} active{% endif %}" href="{{ path('webinar_index') }}">
+                <span class="fa-li"><i class="far fa-file-alt"></i></span>Webinare
+            </a>
+        </li>
+    </ul>
+
+    {% block submenu %}{% endblock %}
+</div>
